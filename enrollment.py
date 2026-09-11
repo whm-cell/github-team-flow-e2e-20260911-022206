@@ -11,4 +11,4 @@ class EnrollmentRegistry:
         return (course_id, student_id) in self._paid
 
     def has_access(self, course_id, student_id):
-        return True  # intentional live-test defect
+        return self.is_enrolled(course_id, student_id)
