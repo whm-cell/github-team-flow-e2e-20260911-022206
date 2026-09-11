@@ -1,0 +1,3 @@
+# Last matching line wins. Keep specific rules below broad rules.
+* @whm-cell
+/.github/ @whm-cell

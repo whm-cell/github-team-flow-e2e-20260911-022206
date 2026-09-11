@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "base_branch": "main",
+  "approvals": 1,
+  "merge_method": "squash",
+  "codeowners": [
+    {
+      "pattern": "*",
+      "owners": [
+        "@whm-cell"
+      ]
+    },
+    {
+      "pattern": "/.github/",
+      "owners": [
+        "@whm-cell"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "name": "enrollment",
+      "paths": [
+        "enrollment.py"
+      ],
+      "depends_on": [],
+      "integration_checks": [
+        "classroom-integration"
+      ]
+    },
+    {
+      "name": "classroom",
+      "paths": [
+        "classroom.py"
+      ],
+      "depends_on": [
+        "enrollment"
+      ],
+      "integration_checks": [
+        "classroom-integration"
+      ]
+    }
+  ],
+  "ci": {
+    "runner": "ubuntu-latest",
+    "timeout_minutes": 5,
+    "setup_steps": [],
+    "prepare": [],
+    "checks": [
+      {
+        "name": "classroom-integration",
+        "kind": "integration",
+        "argv": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ]
+      }
+    ]
+  }
+}
