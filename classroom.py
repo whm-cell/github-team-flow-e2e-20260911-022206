@@ -9,7 +9,7 @@ class Classroom:
     def join(self, student_id):
         if self.ended:
             raise ValueError("class has ended")
-        if not self.enrollment.is_enrolled(self.course_id, student_id):
+        if not self.enrollment.has_access(self.course_id, student_id):
             raise PermissionError("paid enrollment is required")
         self.members.add(student_id)
         return {"course_id": self.course_id, "student_id": student_id, "joined": True}
