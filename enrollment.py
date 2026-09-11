@@ -9,3 +9,6 @@ class EnrollmentRegistry:
 
     def is_enrolled(self, course_id, student_id):
         return (course_id, student_id) in self._paid
+
+    def has_access(self, course_id, student_id):
+        return self.is_enrolled(course_id, student_id)
